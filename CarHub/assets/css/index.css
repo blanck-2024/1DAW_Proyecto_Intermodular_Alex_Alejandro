@@ -7,40 +7,6 @@ body {
     color: #333;
 }
 
-/* Navbar */
-nav {
-    background: #0055aa;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    transition: background-color 0.3s ease;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #b3d7ff;
-}
-
 /* Hero Section */
 header.hero {
     background: #0055aa;
@@ -73,12 +39,9 @@ header.hero .btn {
     display: inline-block;
     animation: bounceIn 1s ease;
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 10;
 }
-
-header.hero .btn:hover {
-    transform: scale(1.1);
-}
-
 
 header.hero .btn:hover {
     transform: scale(1.1);

@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../assets/img/logoCarHub_Nero_AI_Image_Upscaler_Photo_Face.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - CarHub</title>
-    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
     <div class="admin-container">
@@ -13,11 +14,14 @@
             <h2>Panel de Admin</h2>
             <ul>
                 <li><a href="#">Usuarios</a></li>
-                <li><a href="#">Vehículos</a></li>
+                <li><a href="catalog.html">Vehículos</a></li>
                 <li><a href="#">Ventas</a></li>
                 <li><a href="#">Reportes</a></li>
+                <li><a href="../index.html">Inicio</a></li>
             </ul>
-            <a href="#" class="logout-btn">Cerrar Sesión</a>
+            <a href="login.html" class="logout-btn">Cerrar Sesión</a>
+            <div id="footer"></div>
+
         </aside>
 
         <!-- Contenido Principal -->
@@ -35,7 +39,7 @@
                 <div class="card">
                     <h3>Vehículos</h3>
                     <p>Revisa y edita los vehículos en venta.</p>
-                    <a href="#">Ver Vehículos</a>
+                    <a href="catalog.html">Ver Vehículos</a>
                 </div>
                 <div class="card">
                     <h3>Ventas</h3>
@@ -45,5 +49,14 @@
             </div>
         </section>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Cargar el Footer
+            fetch("../components/footer.html")
+                .then(response => response.text())
+                .then(data => document.getElementById("footer").innerHTML = data)
+                .catch(error => console.error('Error cargando el footer:', error));
+        });
+    </script>
 </body>
 </html>

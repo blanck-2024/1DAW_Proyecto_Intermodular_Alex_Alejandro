@@ -1,0 +1,1189 @@
+#PAGINA PRINCIPAL
+
+"HTML"
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarHub - Compra y Venta de Vehículos</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+
+    <!-- Aquí se insertará el navbar dinámicamente -->
+    <div id="nav"></div>
+
+    <header class="hero">
+        <h1>Bienvenido a CarHub</h1>
+        <p>Encuentra el auto perfecto para ti</p>
+        <a href="views/catalog.html" class="btn">Ver Catálogo</a>
+    </header>
+
+    <main>
+        <section class="features">
+            <h2 style="text-align: center">¿Por qué elegir CarHub?</h2>
+            <div class="feature-list">
+                <div class="feature">
+                    <h3>Transparencia Total</h3>
+                    <p>Historial de mantenimiento y accidentes disponible para cada vehículo.</p>
+                </div>
+                <div class="feature">
+                    <h3>Verificación Segura</h3>
+                    <p>Identidades y vehículos verificados para evitar fraudes.</p>
+                </div>
+                <div class="feature">
+                    <h3>Recomendaciones Inteligentes</h3>
+                    <p>Sugerencias personalizadas según tu estilo de vida y necesidades.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>¡Empieza ahora!</h2>
+            <a href="views/register.html" class="btn">Crear Cuenta</a>
+        </section>
+    </main>
+
+    <!-- Aquí se insertará el footer dinámicamente -->
+    <div id="footer"></div>
+
+</body>
+</html>
+
+"CSS"
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Hero Section */
+header.hero {
+    background: #0055aa;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header.hero h1 {
+    margin: 0;
+    font-size: 3em;
+    animation: fadeIn 1s ease;
+}
+
+header.hero p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease;
+}
+
+header.hero .btn {
+    background: white;
+    color: #0055aa;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+    animation: bounceIn 1s ease;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 10;
+}
+
+header.hero .btn:hover {
+    transform: scale(1.1);
+}
+
+header.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    animation: bgZoom 10s ease infinite;
+}
+
+/* Features Section */
+.features {
+    margin: 50px 0;
+    animation: fadeIn 1s ease;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.feature {
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature h3 {
+    margin-top: 0;
+}
+
+/* CTA Section */
+.cta {
+    text-align: center;
+    margin: 50px 0;
+    animation: fadeIn 1.5s ease;
+}
+
+.cta .btn {
+    background: #0055aa;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn:hover {
+    background-color: #004494;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bgZoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+#PAGINA DE CATALOGO
+
+"HTML"
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Vehículos - CarHub</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="catalog-page">
+
+
+
+    <div id="nav"></div>
+
+    <main>
+        <h2>Catálogo de Vehículos</h2>
+        <div class="vehicle-list">
+            <div class="vehicle">
+                <img src="../assets/img/coche1.jpg" alt="Coche 1">
+                <h3>BMW M5</h3>
+                <p>Precio: $144,210</p>
+            </div>
+            <div class="vehicle">
+                <img src="../assets/img/coche2.jpg" alt="Coche 2">
+                <h3>Ford Mustang 2023</h3>
+                <p>Precio: $80,000</p>
+            </div>
+            <div class="vehicle">
+                <img src="../assets/img/coche3.jpg" alt="Coche 2">
+                <h3>DOGE CHALLENGER SRT</h3>
+                <p>Precio: $139,000</p>
+            </div>
+            <div class="vehicle">
+                <img src="../assets/img/coche4.jpg" alt="Coche 2">
+                <h3>NISSAN SKYLINE</h3>
+                <h3>GT-R R34</h3>
+                <p>Precio: $220,000</p>
+            </div>
+            <div class="vehicle">
+                <img src="../assets/img/coche5.jpg" alt="Coche 2">
+                <h3>VOLKSWAGEN GOLF R</h3>
+                <p>Precio: $55,000</p>
+            </div>
+            <div class="vehicle">
+                <img src="../assets/img/coche6.jpg" alt="Coche 2">
+                <h3>MERCEDES CLS</h3>
+                <p>Precio: $80,000</p>
+            </div>
+        </div>
+        <!-- Botón para regresar al nav -->
+        <button class="button">
+            <a href="#nav">
+                <svg class="svgIcon" viewBox="0 0 384 512">
+                    <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
+                </svg>
+            </a>
+        </button>
+    </main>
+
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Cargar el Navbar
+            fetch("../components/navbar.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("nav").innerHTML = data;
+
+                    // Ocultar la opción de "Catálogo" si estamos en la página de catálogo
+                    const catalogLink = document.querySelector('a[data-page="catalog"]');
+                    if (catalogLink) {
+                        catalogLink.parentElement.style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Error cargando el navbar:', error));
+
+            // Cargar el Footer
+            fetch("../components/footer.html")
+                .then(response => response.text())
+                .then(data => document.getElementById("footer").innerHTML = data)
+                .catch(error => console.error('Error cargando el footer:', error));
+        });
+    </script>
+
+</body>
+</html>
+
+"CSS"
+main {
+    margin-top: 60px; /* Ajusta según la altura del navbar */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body.catalog-page .hero {
+    display: none;
+}
+
+
+/* Navbar */
+#nav {
+    background: #ffffff;
+    padding: 10px;
+    position: fixed;
+    top: 0.1;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+#nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#nav ul li {
+    margin: 0 15px;
+}
+
+#nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#nav ul li a:hover {
+    color: #707070;
+}
+
+header.hero {
+    background: #0055aa;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+header.hero h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header.hero p {
+    font-size: 1.2em;
+}
+
+header.hero .btn {
+    background: white;
+    color: #0055aa;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    margin-top: 1;
+}
+
+.features {
+    margin: 20px 0;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.cta {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.cta .btn {
+    background: #0055aa;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.vehicle-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.vehicle {
+    flex: 0 0 calc(33.33% - 20px);
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 85, 170, 0.2);
+    border-color: #0055aa;
+}
+.vehicle img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.vehicle h3 {
+    color: #0055aa;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.vehicle p {
+    color: #004494;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+/* From Uiverse.io by vinodjangid07 */
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #0055aa;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.253);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: center;
+  }
+
+  .svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+  }
+
+  .svgIcon path {
+    fill: white;
+  }
+
+  .button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: #0055aa;
+    align-items: center;
+  }
+
+  .button:hover .svgIcon {
+    /* width: 20px; */
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+  }
+
+  .button::before {
+    position: absolute;
+    bottom: -20px;
+    content: "Back to Top";
+    color: white;
+    /* transition-duration: .3s; */
+    font-size: 0px;
+  }
+
+  .button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    /* transform: translateY(-30px); */
+    transition-duration: 0.3s;
+  }
+
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+main h2 {
+    color: #0055aa;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, #0055aa, #004494);
+    border-radius: 2px;
+}
+
+@media (max-width: 1200px) {
+    .vehicle {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .vehicle {
+        flex: 0 0 100%;
+    }
+
+    main {
+        padding: 20px;
+        margin: 20px;
+    }
+}
+
+#PAGINA DASHBOARD
+
+"HTML"
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CarHub</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+    <div id="nav"></div>
+
+    <main>
+        <h2>Panel de Usuario</h2>
+        <p>Bienvenido, aquí puedes administrar tus vehículos, compras y ventas.</p>
+        <button>Mis Vehículos</button>
+        <button>Mis Compras</button>
+        <button>Editar Perfil</button>
+    </main>
+
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // Cargar el Navbar
+            fetch("components/navbar.html")
+        .then(response => response.text())
+                .then(data => document.getElementById("nav").innerHTML = data)
+                .catch(error => console.error('Error cargando el navbar:', error));
+
+    // Cargar el Footer
+            fetch("components/footer.html")
+        .then(response => response.text())
+                .then(data => document.getElementById("footer").innerHTML = data)
+                .catch(error => console.error('Error cargando el footer:', error));
+    });
+    </script>
+</body>
+</html>
+
+"CSS"
+main {
+    margin-top: 60px; /* Ajusta según la altura del navbar */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body.catalog-page .hero {
+    display: none;
+}
+
+
+/* Navbar */
+#nav {
+    background: #ffffff;
+    padding: 10px;
+    position: fixed;
+    top: 0.1;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+#nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#nav ul li {
+    margin: 0 15px;
+}
+
+#nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#nav ul li a:hover {
+    color: #707070;
+}
+
+header.hero {
+    background: #0055aa;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+header.hero h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header.hero p {
+    font-size: 1.2em;
+}
+
+header.hero .btn {
+    background: white;
+    color: #0055aa;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    margin-top: 1;
+}
+
+.features {
+    margin: 20px 0;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.cta {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.cta .btn {
+    background: #0055aa;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.vehicle-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.vehicle {
+    flex: 0 0 calc(33.33% - 20px);
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 85, 170, 0.2);
+    border-color: #0055aa;
+}
+.vehicle img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.vehicle h3 {
+    color: #0055aa;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.vehicle p {
+    color: #004494;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+/* From Uiverse.io by vinodjangid07 */
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #0055aa;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.253);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: center;
+  }
+
+  .svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+  }
+
+  .svgIcon path {
+    fill: white;
+  }
+
+  .button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: #0055aa;
+    align-items: center;
+  }
+
+  .button:hover .svgIcon {
+    /* width: 20px; */
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+  }
+
+  .button::before {
+    position: absolute;
+    bottom: -20px;
+    content: "Back to Top";
+    color: white;
+    /* transition-duration: .3s; */
+    font-size: 0px;
+  }
+
+  .button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    /* transform: translateY(-30px); */
+    transition-duration: 0.3s;
+  }
+
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+main h2 {
+    color: #0055aa;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, #0055aa, #004494);
+    border-radius: 2px;
+}
+
+@media (max-width: 1200px) {
+    .vehicle {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .vehicle {
+        flex: 0 0 100%;
+    }
+
+    main {
+        padding: 20px;
+        margin: 20px;
+    }
+}
+
+#PAGINA REGISTER
+
+"HTML"
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - CarHub</title>
+    <link rel="stylesheet" href="../assets/css/registro.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="navbar"></div>
+
+    <main>
+        <h2>Registro de Usuario</h2>
+        <form>
+            <label>Nombre:</label>
+            <input type="text" required>
+
+            <label>Email:</label>
+            <input type="email" required>
+
+            <label>Contraseña:</label>
+            <div class="password-container">
+                <input type="password" id="password-input" required>
+                <span class="password-toggle">
+                  <i class="fa fa-eye"></i>
+                </span>
+              </div>
+
+            <button type="submit">Registrarse</button>
+        </form>
+    </main>
+
+    <div id="footer" style="text-align: center; margin-top: 280px;color: white;"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // Cargar el Navbar
+            fetch("components/navbar.html")
+        .then(response => response.text())
+                .then(data => document.getElementById("nav").innerHTML = data)
+                .catch(error => console.error('Error cargando el navbar:', error));
+
+    // Cargar el Footer
+            fetch("../components/footer.html")
+        .then(response => response.text())
+                .then(data => document.getElementById("footer").innerHTML = data)
+                .catch(error => console.error('Error cargando el footer:', error));
+    });
+    </script>
+</body>
+</html>
+
+"CSS"
+/* Importar fuentes de Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0055aa 0%, #003366 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Estilos del contenido principal */
+main {
+    max-width: 480px;
+    margin: 3rem auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #2d3436;
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    background: linear-gradient(to right, #0055aa, #003366);
+    border-radius: 2px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+label {
+    font-weight: 500;
+    color: #2d3436;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+}
+
+input:focus {
+    border-color: #667eea;
+    border-color: #0055aa;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 4px rgba(0, 85, 170, 0.1);
+}
+
+.password-container input {
+    padding-right: 3rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+    padding: 5px;
+}
+
+.password-toggle:hover {
+    color: #667eea;
+    color: #0055aa;
+}
+
+.password-toggle i {
+    font-size: 1.2rem;
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0055aa 0%, #003366 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 85, 170, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 85, 170, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Estilos para mensajes de error */
+input:invalid {
+    border-color: #ff7675;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    main {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    input, button {
+        padding: 0.8rem;
+    }
+}
+
+/* Efectos de hover para inputs */
+input:hover {
+    border-color: #764ba2;
+}
+
+/* Animación para el botón de toggle */
+.password-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.password-toggle:hover i {
+    transform: scale(1.1);
+}
+
+/* Estilo para inputs con autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+"JS"
+/**
+ * Función para alternar la visibilidad de la contraseña
+ * @returns {void}
+ */
+function togglePasswordVisibility() {
+    // Obtener los elementos del DOM
+    const passwordInput = document.getElementById("password-input");
+    const passwordToggle = document.querySelector(".password-toggle i");
+
+    // Comprobar el tipo actual del input y cambiarlo
+    const isPasswordVisible = passwordInput.type === "text";
+
+    // Cambiar el tipo de input
+    passwordInput.type = isPasswordVisible ? "password" : "text";
+
+    // Actualizar el ícono
+    passwordToggle.classList.toggle("fa-eye");
+    passwordToggle.classList.toggle("fa-eye-slash");
+}
+
+// Agregar el evento click al botón de toggle cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.querySelector('.password-toggle');
+    if (toggleButton) {
+        toggleButton.addEventListener('click', togglePasswordVisibility);
+    }
+});
+
+#COMPONENTS
+
+#footer
+<footer>
+    <p>© 2025 CarHub - Todos los derechos reservados</p>
+</footer>
+
+#navbar
+<nav>
+    <ul>
+        <li><a href="../index.html" class="nav-link" data-page="index">Inicio</a></li>
+        <li><a href="../views/catalog.html" class="nav-link" data-page="catalog">Catálogo</a></li>
+        <li><a href="../views/register.html" class="nav-link" data-page="register">Registro</a></li>
+        <li><a href="../views/dashboard.html" class="nav-link" data-page="dashboard">Mi Cuenta</a></li>
+        <li><a href="../views/admin.html" class="nav-link" data-page="admin">Admin</a></li>
+    </ul>
+</nav>
