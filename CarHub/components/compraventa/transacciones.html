@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administrar Transacciones</title>
+  <link rel="stylesheet" href="../styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h1>Administrar Transacciones</h1>
+      <button class="btn-detalles" onclick="window.location.href='./newTransaccion.html'">Nueva Transacción</button>
+      <button class="btn-detalles" onclick="window.location.href='../../views/admin.html'">Volver atrás</button>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Id Transacción</th>
+            <th>Id Vendedor</th>
+            <th>Id Vehículo</th>
+            <th>Detalles</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody id="transacciones-tbody">
+          <!-- Carga dinámica -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function cargarTransacciones() {
+      fetch("http://localhost:4050/compraventa")
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById("transacciones-tbody");
+
+          for (let transaccion of data) {
+            const row = document.createElement("tr");
+
+            const idTransaccionCell = document.createElement("td");
+            idTransaccionCell.innerText = transaccion.id_transaccion;
+
+            const idVendedorCell = document.createElement("td");
+            idVendedorCell.innerText = transaccion.id_vendedor;
+
+            const idVehiculoCell = document.createElement("td");
+            idVehiculoCell.innerText = transaccion.id_vehiculo;
+
+            // Botón Ver Detalles
+            const detallesCell = document.createElement("td");
+            const detallesButton = document.createElement("button");
+            detallesButton.innerText = "Ver Detalles";
+            detallesButton.classList.add("btn-detalles");
+            detallesButton.onclick = function () {
+              Swal.fire({
+                title: "Detalles",
+                text: "Mostrando detalles...",
+                icon: "info"
+              }).then(() => {
+                window.location.href = "showTransaccion.html?id_transaccion=" + transaccion.id_transaccion;
+              });
+            };
+            detallesCell.appendChild(detallesButton);
+
+            // Botón Eliminar
+            const eliminarCell = document.createElement("td");
+            const deleteButton = document.createElement("button");
+            deleteButton.innerText = "Eliminar";
+            deleteButton.classList.add("btn-delete");
+            deleteButton.onclick = function () {
+              eliminarTransaccion(transaccion.id_transaccion);
+            };
+            eliminarCell.appendChild(deleteButton);
+
+            row.appendChild(idTransaccionCell);
+            row.appendChild(idVendedorCell);
+            row.appendChild(idVehiculoCell);
+            row.appendChild(detallesCell);
+            row.appendChild(eliminarCell);
+
+            tbody.appendChild(row);
+          }
+        })
+        .catch(err => {
+          console.log("Error al obtener transacciones:", err);
+        });
+    }
+
+    function eliminarTransaccion(id_transaccion) {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: `Eliminar Transacción '${id_transaccion}'. Esta acción no se puede deshacer.`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+      }).then(result => {
+        if (result.isConfirmed) {
+          fetch("http://localhost:4050/compraventa/" + id_transaccion, {
+            method: "DELETE"
+          })
+            .then(res => res.json())
+            .then(data => {
+              Swal.fire("Eliminada", data.message, "success").then(() => {
+                window.location.reload(true);
+              });
+            })
+            .catch(err => {
+              Swal.fire("Error", "No se pudo eliminar", "error");
+              console.error(err);
+            });
+        }
+      });
+    }
+
+    cargarTransacciones();
+  </script>
+</body>
+</html>

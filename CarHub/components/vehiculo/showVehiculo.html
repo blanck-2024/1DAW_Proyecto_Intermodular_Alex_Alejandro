@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Vehiculo</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+</head>
+<body>
+    <style>
+        
+    </style>
+    <div class="container">
+        <div class="vehiculos">
+            <div>
+                <h1>Detalles de Vehiculo</h1>
+                <div class="header">
+                    <h3 id="marca"></h3>
+                    <h3 id="modelo"></h3>
+                </div>
+                <button class="btn-detalles" onclick="window.history.back()">Volver</button>
+            </div>
+            <div class="vehiculos table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Kilometraje</th>
+                            <th>Precio</th>
+                            <th>Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vehiculos-body-detalles">
+                        <!-- Cargaremos dinámicamente el contenido JSON (BackEnd) -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function cargarDetallesVehiculo(){
+            const urlParams = new URLSearchParams(window.location.search)
+            const id_vehiculo = urlParams.get("id_vehiculo")
+
+            fetch("http://localhost:4050/vehiculos/" + id_vehiculo)
+            .then(function(respuestaTextoPlano){
+                return respuestaTextoPlano.json()
+            })
+            .then(function(vehiculo){
+                const tbody = document.getElementById("vehiculos-body-detalles")
+                
+                document.getElementById("marca").innerText = vehiculo.marca
+                document.getElementById("modelo").innerText = vehiculo.modelo
+
+                const row = document.createElement("tr")
+
+                const tipoCell = document.createElement("td")
+                tipoCell.innerText = vehiculo.tipo
+
+                const kilometrajeCell = document.createElement("td")
+                kilometrajeCell.innerText = vehiculo.kilometraje
+
+                const precioCell = document.createElement("td")
+                precioCell.innerText = vehiculo.precio
+
+                const imagenesCell = document.createElement("td")
+                const img = document.createElement("img")
+                img.style.width = "45%"
+                img.style.animation
+                img.src = vehiculo.imagen_url
+
+                
+                imagenesCell.appendChild(img)
+
+                row.appendChild(tipoCell)
+                row.appendChild(kilometrajeCell)
+                row.appendChild(precioCell)
+                row.appendChild(imagenesCell)
+
+                tbody.appendChild(row)
+                
+            })
+            .catch(function(error){
+                console.log("Error en obtener los detalles del vehiculo ", error)
+            })
+
+        }
+
+        cargarDetallesVehiculo()
+    </script>
+</body>
+</html>

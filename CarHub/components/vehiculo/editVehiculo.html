@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Vehiculo</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="vehiculo"></div>
+            <div class="vehiculo title">
+                <h1>Editar Vehiculo</h1>
+            </div>
+            <div class="vehiculo body">
+                <form onSubmit="editarVehiculo(event)">
+                    <input type="text" id="marcaInput" placeholder="Nombre de la Marca..." required>
+
+                    <input type="text" id="modeloInput" placeholder="Nombre de el Modelo..." required>
+
+                    <input type="number" min="1900" max="2100" step="1" id="anyo" minlength="4" maxlength="4" placeholder="Año de Fabricacion..." required>
+
+                    <input type="text" id="tipo" placeholder="Tipo de Vehiculo..." required>
+
+                    <input type="text" id="kilometraje" onfocus="quitarFormato(this)" onblur="formatearNumero(this)" placeholder="Kilometraje..." required>
+
+                    <input type="text" id="precio" onfocus="quitarFormato(this)"  onblur="formatearNumero(this, true)" placeholder="Precio..." required>
+
+                    <input type="text" id="imagen_url" placeholder="imagen_url..." required>
+
+                    <button type="submit" class="btn-detalles">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search)
+        const idVehiculo = urlParams.get("id_vehiculo")
+
+        function quitarFormato(input) {
+            // Quita los puntos y el símbolo de euro para permitir la edición
+            input.value = input.value.replace(/\./g, "").replace(/\s?€/g, "");
+        }
+
+        function formatearNumero(input, esPrecio = false) {
+            let valor = input.value.replace(/\D/g, ""); // Elimina todo lo que no sea número
+
+            if (valor) {
+                // Aplica puntos de miles
+                valor = Number(valor).toLocaleString("es-ES");
+                if (esPrecio) valor += " €"; // Añade el símbolo € si es un precio
+            }
+
+            input.value = valor;
+        }
+        
+        function editarVehiculo(e){
+            e.preventDefault()
+            const marca = document.getElementById("marcaInput").value
+            const modelo = document.getElementById("modeloInput").value
+            const anyo = document.getElementById("anyo").value
+            const tipo = document.getElementById("tipo").value
+            const kilometraje = document.getElementById("kilometraje").value//Eliminamos los . y € y lo convertimos a float
+            const precio = document.getElementById("precio").value//Eliminamos los . y € y lo convertimos a float
+            const imagen_url = document.getElementById("imagen_url").value
+
+            fetch("http://localhost:4050/vehiculos/" + idVehiculo,{
+                method:"PUT",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({marca,modelo,anyo,tipo,kilometraje,precio,imagen_url})
+            })
+            .then(function(respuestaTextoPlano){
+                return respuestaTextoPlano.json()
+            })
+            .then(function(data){
+                console.log(data)
+                Swal.fire({
+                    title: "¡Modificado!",
+                    text: "¡Vehiculo modificado con éxito!",
+                    icon: "success"
+                })
+                .then(function(){
+                    window.location.href="./vehiculos.html"
+                }) 
+            })
+            .catch(function(error){
+                console.log(error)
+                Swal.fire({
+                    title: "¡Error!",
+                    text: error,
+                    icon: "error"
+                });
+            }) 
+        }
+
+        function cargarDetallesVehiculo(){
+            fetch("http://localhost:4050/vehiculos/" + idVehiculo)
+            .then(function(respuestaTextoPlano){
+                return respuestaTextoPlano.json()
+            })
+            .then(function(detalles){
+                console.log(detalles)
+                document.getElementById("marcaInput").value = detalles.marca
+                document.getElementById("modeloInput").value = detalles.modelo
+                document.getElementById("anyo").value = detalles.anyo
+                document.getElementById("tipo").value = detalles.tipo
+                document.getElementById("kilometraje").value = detalles.kilometraje
+                document.getElementById("precio").value = detalles.precio
+                document.getElementById("imagen_url").value = detalles.imagen_url
+            })
+        }
+
+        cargarDetallesVehiculo()
+    </script>
+</body>
+</html>
