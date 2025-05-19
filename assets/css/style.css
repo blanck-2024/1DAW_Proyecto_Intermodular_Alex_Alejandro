@@ -1,0 +1,257 @@
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+main {
+    max-width: 2200px; 
+    margin: 60px 10px; 
+    padding: 60px 40px; 
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body.catalog-page .hero {
+    display: none;
+}
+
+/* Navbar actualizado del dashboard */
+#nav {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+#nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#nav ul li {
+    margin: 0 20px;
+}
+
+#nav ul li a {
+    color: #2d3436;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 12px;
+}
+
+#nav ul li a:hover {
+    background: linear-gradient(135deg, #0055aa 0%, #003366 100%);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.user-info {
+    color: white;
+}
+
+/* El resto del código original se mantiene igual */
+header.hero {
+    background: #0055aa;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+header.hero h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header.hero p {
+    font-size: 1.2em;
+}
+
+header.hero .btn {
+    background: white;
+    color: #0055aa;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    margin-top: 1;
+    font-size: 40px;
+}
+
+.features {
+    margin: 20px 0;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.cta {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.cta .btn {
+    background: #0055aa;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.vehicle-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 25px; 
+    padding: 20px 0;
+}
+
+.vehicle {
+    flex: 0 0 calc(33.33% - 17px);
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 85, 170, 0.2);
+    border-color: #0055aa;
+}
+
+.vehicle img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.vehicle h3 {
+    color: #0055aa;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.vehicle p {
+    color: #004494;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+/* From Uiverse.io by vinodjangid07 */
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #0055aa;
+    border: none;
+    font-weight: 580;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px rgba(0, 0, 0, 0.253);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: center;
+}
+
+.svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+.button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: #0055aa;
+    align-items: center;
+}
+
+.button:hover .svgIcon {
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+}
+
+.button::before {
+    position: absolute;
+    bottom: -20px;
+    content: "Volver al Inicio";
+    color: white;
+    font-size: 0px;
+}
+
+.button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    transition-duration: 0.3s;
+}
+
+@media (max-width: 1200px) {
+    main {
+        max-width: 1000px; /* Ancho máximo ajustado para pantallas más pequeñas */
+        margin: 60px 20px; /* Mantiene márgenes laterales en pantallas más pequeñas */
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        max-width: 100%; /* Elimina el ancho máximo en móviles */
+        margin: 60px 15px; 
+        padding: 15px;
+    }
+}

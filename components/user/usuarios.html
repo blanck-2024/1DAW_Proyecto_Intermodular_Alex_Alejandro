@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Usuarios</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Administrar Usuarios</h1>
+            <button class="btn-detalles" onclick="window.location.href='./newUsuario.html'">Nuevo Usuario </button>
+            <button class="btn-detalles" onclick="window.location.href='../../views/admin.html'">Volver atras </button> 
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id Usuario</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Correo Electronico</th>
+                        <th>Telefono</th>
+                        <th>Direccion</th>
+                        <th>Rol</th>
+                        <th>Contraseña</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="usuarios-body">
+                    <!-- Cargaremos dinámicamente el contenido JSON (BackEnd) -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function cargarUsuarios(){
+            fetch("http://localhost:4050/usuarios")
+            .then(function(respuestaTextoPlano){
+                //La respuesta (OK o KO) la transformo en JSON
+                return respuestaTextoPlano.json()
+            })
+            .then(function(data){
+                //Gestionamos el OK con "data" que tendrá formato JSON
+                const tbody = document.getElementById("usuarios-body")
+                for(let usuario of data){
+                    //Para cada usuario, creamos una fila
+                    const row = document.createElement("tr")
+
+                    const idCell = document.createElement("td")
+                    idCell.innerText = usuario.idUser
+
+                    const userNameCell = document.createElement("td")
+                    userNameCell.innerText = usuario.username
+
+                    const nombreCell = document.createElement("td")
+                    nombreCell.innerText = usuario.nombre
+
+                    const apellidosCell = document.createElement("td")
+                    apellidosCell.innerText = usuario.apellidos
+
+                    const correo_electronicoCell = document.createElement("td")
+                    correo_electronicoCell.innerText = usuario.correo_electronico
+
+                    const passwordCell = document.createElement("td")
+                    passwordCell.innerText = usuario.password
+
+                    const telefonoCell = document.createElement("td")
+                    telefonoCell.innerText = usuario.telefono
+
+                    const direccionCell = document.createElement("td")
+                    direccionCell.innerText = usuario.direccion
+                    
+                    const rolCell = document.createElement("td")
+                    rolCell.innerText = usuario.rol
+
+                    const masAccionesCell = document.createElement("td")
+
+                    const editButton = document.createElement("button")
+
+    
+                    editButton.innerText = "Editar Datos"
+                    editButton.classList.add("btn-editar")
+
+                    editButton.onclick = function(){
+                        window.location.href = "./editUsuario.html?idUser=" + usuario.idUser
+                    }
+                    masAccionesCell.appendChild(editButton)
+
+                    //DELETE BUTTON
+                    const deleteButton = document.createElement("button")
+                    deleteButton.innerText = "Eliminar"
+                    deleteButton.classList.add("btn-delete")
+
+                    deleteButton.onclick = function(){
+                        eliminarUsuario(usuario.idUser)
+                    }
+                    masAccionesCell.appendChild(deleteButton)
+
+                    row.appendChild(idCell)
+                    row.appendChild(userNameCell)
+                    row.appendChild(nombreCell)
+                    row.appendChild(apellidosCell)
+                    row.appendChild(correo_electronicoCell)
+                    row.appendChild(passwordCell)
+                    row.appendChild(telefonoCell)
+                    row.appendChild(direccionCell)
+                    row.appendChild(rolCell)
+                    row.appendChild(passwordCell)
+                    row.appendChild(masAccionesCell)
+
+                    tbody.appendChild(row)
+                }
+
+            })
+            .catch(function(error){
+                //Gestionamos el KO con "error" que tendrá formato JSON
+                console.log("Error al obtener los usuarios: ", error)
+            })
+        }
+
+    function eliminarUsuario(idUser){
+        Swal.fire({
+            title:"¿Estás seguro?",
+            text:`Eliminar Usuario '${idUser}'. Esta acción no se puede deshacer`,
+            icon:"warning",
+            showCancelButton:true,
+            confirmButtonText:"Sí, eliminar",
+            cancelButtonText:"Cancelar"
+        })
+        .then(function(result){
+            if(result.isConfirmed){
+                fetch("http://localhost:4050/usuarios/" + idUser,{
+                    method:"DELETE"
+                })
+                .then(function(respuestaTextoPlano){
+                    return respuestaTextoPlano.json()
+                })
+                .then(function(data){
+                    //OK
+                    console.log(data)
+                    Swal.fire({
+                        title: "Eliminado!",
+                        text: "¡Usuario eliminado con éxito!",
+                        icon: "success"
+                    })
+                    .then(function(){
+                            //Refresco de página en JS desde el servidor y no desde caché
+                            window.location.reload(true)
+                            //cargarUsuarios()
+                        })
+                })
+                .catch(function(error){
+                    console.log(error)
+                    Swal.fire({
+                        title: "¡Error!",
+                        text: error,
+                        icon: "error"
+                    });
+                })
+            }
+        })
+    }
+
+    cargarUsuarios()
+    </script>
+</body>
+</html>
